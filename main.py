@@ -105,14 +105,14 @@ def main():
                     shot.kill()
                     asteroid.split()
                     player.increase_score()
-                    if player.get_score() > high_score:
-                        high_score = player.get_score()
-                        with open(high_score_path, "w", encoding="utf-8") as high_score_file:
-                            high_score_file.write(str(high_score))
 
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 log_event("player_hit")
+                if player.get_score() > high_score:
+                    high_score = player.get_score()
+                    with open(high_score_path, "w", encoding="utf-8") as high_score_file:
+                        high_score_file.write(str(high_score))
                 game_over = True
                 break
 
